@@ -25,22 +25,30 @@ function check() {
 }
 
 function correct() {
-    console.log("Wooo! You completed this git challenge! Resetting now...")
+    console.log("\n   Wooo! You completed this git challenge! Resetting now...\n")
     reset();
 }
 
 function incorrect() {
-    console.log("Sorry, that's not correct. See a hint using 'node gitfun hint', and reset the level with 'node gitfun reset'");
+    console.log("\n   Sorry, that's not correct. See a hint using 'node gitfun hint', and reset the level with 'node gitfun reset'\n");
 }
 
 function hint() {
-    console.log('Check out the `git reflog` command')
+    console.log('\n   Check out the `git reflog` command\n')
 }
 
 function directions() {
-    console.log(`You decided to delete your latest commit by running \`git reset --hard HEAD^\`.  But then your partner tells you that the commit was super duper important and that you need it back.  Restore the deleted commit using git. When you are done, run 'node gitfun check'`)
-}
+    var directions = 
+    `\n    Oops! 
 
+    You decided to delete your latest commit by running \`git reset --hard HEAD^\`.
+    But then your partner tells you that the commit was super duper important and that you need it back. 
+    
+    Womp Womp.
+    
+    Restore the deleted commit using git. When you are done, run 'node gitfun check'\n`;
+    console.log(directions);
+}
 function reset() {
     return createWorkshop()
     .then(() => Git.Repository.init('workshop/', 0))
@@ -53,7 +61,7 @@ function reset() {
             .then((OID) => Git.Reset.reset(repo, OID, Git.Reset.TYPE.HARD))
         })
     }).then(() => {
-        console.log('The challenge has been set up!')
+        console.log('\n   The challenge has been set up!\n')
     })
     .catch(console.error);
 

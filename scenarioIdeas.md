@@ -5,7 +5,8 @@
 3. Used `git add .` but realized there was a file you didn't want to track
 4. Push up erroneous code or file
 5. You want to add a change to your last commit
-6. A few of your commits are all just clean up. You want to combine them into one commit
+6. After adding that change, you aren't able to push to your remote repo
+7. A few of your commits are all just clean up. You want to combine them into one commit
 
 
 ####Team

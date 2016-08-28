@@ -1,5 +1,5 @@
 {
-  "name": "git-stuff",
+  "name": "gitfun",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,9 +8,12 @@
   },
   "dependencies": {
     "mz": "^2.4.0",
-    "nodegit": "nodegit/nodegit",
+    "nodegit": "^0.14.1",
     "rimraf": "^2.5.4"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Karen MacPherson",
+  "license": "ISC",
+  "bin": {
+    "gitfun": "./bin/gitfun.js"
+  }
 }

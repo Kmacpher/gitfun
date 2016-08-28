@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const Git = require("nodegit");
 const fs = require("mz/fs");
 const rimraf = require('rimraf');

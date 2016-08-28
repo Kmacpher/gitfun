@@ -9,8 +9,11 @@ Note: This workflow is subject to change as the project grows
 ```
 $ git clone https://github.com/kmacpher/gitfun
 $ cd gitfun
-$ node gitfun
+$ npm link
+Then from any directory, you can run gitfun as a command line tool
+$ gitfun
 ```
+
 
 This will create the git repository 'workshop', and will log a prompt with the challenge. Use git commands to modify the git repository according to the challenge directions.
 

@@ -1,24 +1,48 @@
 //play game is in here
-//game interacting with the level
+//game interacting with the level, get current level etc
 
 const fs = require("mz/fs");
 const rimraf = require('rimraf');
 
-function main() {
+const level = 'reflog' //get from .gitfun if exists <= this should be in an iffee or something
+const levelObj = require('../levels/'+level+'.js');
+
+function start() {
     //gives directions
     //if not repo, calls reset and starts
-    directions();
-    fs.exists('workshop/')
-    .then(exists => {
-        if(!exists) return reset();
-    })
-    .catch(console.error);
+
+    //create project and create .gitfun startng at 1
+    
+    //ask for email and name for commits
+    //then call game.reset(1)
+    console.log('game started');
+    // directions();
+    // fs.exists('workshop/')
+    // .then(exists => {
+    //     if(!exists) return reset();
+    // })
+    // .catch(console.error);
+
+}
+
+function runLevel() {
+
+}
+
+function check() {
+    levelObj.check() ? correct() : incorrect();
+    //if timeswrong > 2, hint();
+
+    //checks using level obj, if wrong 3 times, gives hint
+}
+
+function reset(level) {
 
 }
 
 function correct() {
-    console.log("\n   Wooo! You completed this git challenge! Resetting now...\n")
-    reset();
+    console.log("\n   Wooo! You completed this git challenge! Next!\n")
+    reset(levelObj.num + 1); //will reset to next level, or say they are completed
 }
 
 function incorrect() {
@@ -26,35 +50,16 @@ function incorrect() {
 }
 
 function directions() {
-    var directions = 
-    `\n    Oops! 
-
-    You decided to delete your latest commit by running \`git reset --hard HEAD^\`.
-    But then your partner tells you that the commit was super duper important and that you need it back. 
-    
-    Womp Womp.
-    
-    Restore the deleted commit using git. When you are done, run 'node gitfun check'\n`;
-    console.log(directions);
+    console.log(levelObj.directions);
 }
 
-function createWorkshop() {
-    return fs.exists('workshop/')
-    .then(exists => {
-        if(exists) return promisyRmdir('workshop/');
-        else return exists;
-    }).then(() => fs.mkdir('workshop/'))
-    .then(() => fs.open('workshop/file1', 'w'))
-    .then(() => fs.open('workshop/file2', 'w'))
-    .then(() => fs.open('workshop/file3', 'w'))
-    .catch(console.error);
+function hint() {
+    console.log(levelObj.hint);
 }
 
-function promisyRmdir(filepath) {
-	return new Promise(function (resolve, reject) {
-		rimraf(filepath, function (err) {
-			if (err) reject(err);
-			else resolve();
-		});
-	});
+module.exports = {
+    check,
+    hint,
+    start
 }
+

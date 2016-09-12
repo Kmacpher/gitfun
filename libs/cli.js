@@ -17,9 +17,7 @@ function reset(level) {
     //else game.start
 
 
-    // return promisyRmdir('workshop/')
-    // .then(() => fs.mkdir('workshop/'))
-    // .catch(console.error)
+    game.reset();
 
 }
 
@@ -30,7 +28,7 @@ function main() {
         else {
             return fs.exists('./gitfun_workshop')
             .then(exists => {
-                if(exists) return console.log('Please move into the gitfun_workshop directory');
+                if(exists) return console.log('Please move into the gitfun_workshop directory and run `gitfun` again');
                 else return game.start();
             })
         }

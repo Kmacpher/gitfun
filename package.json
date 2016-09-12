@@ -10,6 +10,8 @@
     "commander": "^2.9.0",
     "mz": "^2.4.0",
     "nodegit": "^0.14.1",
+    "promisify": "0.0.3",
+    "prompt": "^1.0.0",
     "rimraf": "^2.5.4"
   },
   "author": "Karen MacPherson",

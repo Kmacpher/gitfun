@@ -3,22 +3,42 @@
 var program = require('commander');
 var cli = require('../libs/cli');
 
-
 program
   .version('0.0.1')
-  .usage('[options] <file ...>')
-  .option('-c, --check', 'Check your current work', cli.check)
-  .option('-r, --reset [level]', 'reset the current level, or to a previous level', cli.reset)
-  .option('-h, --hint', 'Get a hint', cli.hint)
-  .option('-p, --play', 'Get directions, and start the game!', cli.main, {isDefault: true})
+
+program
+  .command('check')
+  .description('Check your current project')
+  .action(function() {
+    cli.check();
+  })
+
+program
+  .command('reset <level>')
+  .description('Reset to a specific level')
+  .action(function(level) {
+    cli.reset(level);
+  })
+
+program
+  .command('hint')
+  .description('Get a hint')
+  .action(function() {
+    cli.hint();
+  })
+
+program
+  .command('play')
+  .description('Play the game!')
+  .action(function() {
+    cli.main();
+  })
+
+program
   .parse(process.argv);
 
+if(process.argv.length === 2) { //default
+  cli.main();
+}
 
-
-
-//if no arg, calls start
-//both should give the directions
-
-// if(process.argv[2]) methods[process.argv[2]]();
-// else methods.main();
-
+  //Maybe all of this should be in index, could also do all with option again.

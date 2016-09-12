@@ -12,7 +12,7 @@ const directions = `Oops!
     
     Womp Womp.
     
-    Restore the deleted commit using git. When you are done, run 'node gitfun check'`;
+    Restore the deleted commit using git. When you are done, run 'gitfun check' to check your work.`;
 
 const hint = `Check out the 'git reflog' command\n`;
 

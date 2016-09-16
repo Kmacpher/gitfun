@@ -1,7 +1,7 @@
 {
-  "name": "Defaulto Bob",
-  "email": "hello@hello.com",
-  "lastLevelCompleted": 0,
+  "name": null,
+  "email": null,
+  "lastLevelCompleted": null,
   "currentLevel": 1,
   "numTimesFailedCheck": 0
 }

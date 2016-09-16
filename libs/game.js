@@ -1,50 +1,52 @@
-//play game is in here
-//game interacting with the level, get current level etc
 
 const fs = require("mz/fs");
-const promisify = require('promisify');
-const rmdir = promisify.object(require('rimraf'));
-const prompt = require('prompt');
+const promisify = require('promisify-node');
+const rmdir = promisify(require('rimraf'));
+const prompt = promisify(require('prompt'));
 const Git = require('nodegit');
 const path = require('path');
 
-const level = 'reflog' //get from .gitfun if exists <= this should be in an iffee or something
+const level = 'reflog' //get from .gitfun if exists <= this should be in an iffee or something, also should be in the level.js
 const levelObj = require('../levels/'+level+'.js');
 
 function start() {
-
-    //create project and create .gitfun startng at 1
-    //console.log('Would you like to create a new project? (Y/n)')
     prompt.start();
+
     prompt.get([{
         name: 'consent',
         description: 'Do you want to create a new Gitfun projet? (Y/n)'
-    }], function (err, result) { 
-        if(err) throw err;
-        if (/^[y|Y](es)?$/.test(result.consent)) {
+    }]).then(results => {
+        if (/^[y|Y](es)?$/.test(results.consent)) {
             return makeProfile()
-            .then(() => runlevel(1))
         } else {
             console.log('Gitfun project was not created');
         }
-    });
-    
-
+    }).catch(console.error);
 }
 
 function makeProfile() {
-     //create folder
-    //  console.log(__dirname);
-    //  console.log(process.argv)
      return fs.mkdir('./gitfun_workshop')
         .then(() => fs.readFile(path.join(__dirname, 'startingProfile.json'), 'utf8'))
-        .then(data => fs.writeFile('gitfun_workshop/.gitfun_profile.json', data))
+        .then(data => {
+            data = JSON.parse(data);
+            prompt.start();
+            return prompt.get([{
+                name: 'name',
+                description: 'What is your name?'
+            }, {
+                name: 'email',
+                description: 'What is your email?'
+            }]).then(results => {
+                console.log('Generating your Gitfun profile...');
+                data.name = results.name;
+                data.email = results.email;
+                return fs.writeFile('gitfun_workshop/.gitfun_profile.json', JSON.stringify(data, null, 2))
+            })
+        })
+        .then(() => {
+            console.log('Your Gitfun project has been created in this directory. Change directory into your gitfun_workshop and run `gitfun`')
+        })
         .catch(console.error);
-        
-    //     .catch(console.error);
-     //create 
-     //ask for email and name for commits
-     //success message - tell user to move into new project and run gitfun play
 }
 
 function runLevel() {

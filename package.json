@@ -14,7 +14,7 @@
     "rimraf": "^2.5.4"
   },
   "author": "Karen MacPherson",
-  "license": "ISC",
+  "license": "MIT",
   "bin": {
     "gitfun": "./bin/gitfun.js"
   }

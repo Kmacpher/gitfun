@@ -1,18 +1,16 @@
 
 const fs = require("mz/fs");
 const promisify = require('promisify-node');
-const rmdir = promisify(require('rimraf'));
-const prompt = promisify(require('prompt'));
-const Git = require('nodegit');
+const promptStart = require('prompt').start;
+const promptGet = promisify(require('prompt').get);
 const path = require('path');
 
-const level = 'reflog' //get from .gitfun if exists <= this should be in an iffee or something, also should be in the level.js
-const levelObj = require('../levels/'+level+'.js');
+const level = require('./level.js');
 
 function start() {
-    prompt.start();
+    promptStart();
 
-    prompt.get([{
+    promptGet([{
         name: 'consent',
         description: 'Do you want to create a new Gitfun projet? (Y/n)'
     }]).then(results => {
@@ -29,8 +27,8 @@ function makeProfile() {
         .then(() => fs.readFile(path.join(__dirname, 'startingProfile.json'), 'utf8'))
         .then(data => {
             data = JSON.parse(data);
-            prompt.start();
-            return prompt.get([{
+            promptStart();
+            return promptGet([{
                 name: 'name',
                 description: 'What is your name?'
             }, {
@@ -50,28 +48,38 @@ function makeProfile() {
 }
 
 function runLevel() {
- console.log('running level')
+    return level.getProfileData()
+    .then(data => {
+        let levelObj = require('../levels/'+data.currentLevel+'.js');
+        if(!data.setup) {
+            return level.reset(levelObj.currentLevel) //instead of running setup, should run reset which will run setup
+            .then(() => {
+                data.setup = true;
+                return level.writeProfileData(data);
+            }).then(() => console.log(levelObj.directions));
+        } else check(levelObj);
+    });
 }
 
-function check() {
-    levelObj.check() ? correct() : incorrect();
-    //if timeswrong > 2, hint();
-
-    //checks using level obj, if wrong 3 times, gives hint
+function check(levelObj) {
+    levelObj.checkSolution()
+    .then(result => result ? correct(levelObj) : incorrect(levelObj));
 }
 
-function reset(level) { ///hmmm. this won't work. will mostly be run inside the folder. 
-    return rmdir('gitfun_workshop/')
-    .catch(console.error)
+function correct(levelObj) {
+    console.log("\n   Wooo! You completed this git challenge! Run `Gitfun` to proceed to the next level.\n");
+    return level.getProfileData()
+    .then((data) => {
+        data.lastLevelCompleted = levelObj.levelNo;
+        data.currentLevel = levelObj.levelNo + 1;
+        data.setup = false;
+        return level.writeProfileData(data)
+    }).catch(console.log)
 }
 
-function correct() {
-    console.log("\n   Wooo! You completed this git challenge! Next!\n")
-    reset(levelObj.num + 1); //will reset to next level, or say they are completed
-}
-
-function incorrect() {
-    console.log("\n   Sorry, that's not correct. See a hint using 'node gitfun hint', and reset the level with 'node gitfun reset'\n");
+function incorrect(levelObj) {
+    console.log("\n   Sorry, that's not the correct solution. See a hint using 'node gitfun hint', and reset the level with 'node gitfun reset'\n");
+    console.log(levelObj.directions);
 }
 
 function directions() {
@@ -85,7 +93,7 @@ function hint() {
 module.exports = {
     check,
     hint,
-    start, 
-    reset
+    start,
+    runLevel
 }
 

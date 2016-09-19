@@ -1,6 +1,7 @@
 
 const fs = require("mz/fs");
 const game = require('./game.js');
+const level = require('./level.js');
 
 function check() {
     game.check();
@@ -11,14 +12,15 @@ function hint() {
     game.hint()
 }
 
-function reset(level) {
- //resets from level or to a level based on game
-    //if workshop, game.reset(level)
-    //else game.start
-
-
-    game.reset();
-
+function reset(levelNo) {
+    //level needs to be a number
+    level.getProfileData()
+    .then((data) => {
+        data.currentLevel = levelNo;
+        return level.writeProfileData(data);
+    })
+    .then(() => level.reset(parseInt(levelNo, 10)))
+    .then(game.runLevel)
 }
 
 function main() {

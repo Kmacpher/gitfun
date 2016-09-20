@@ -80,17 +80,19 @@ function incorrect(levelObj) {
   console.log(levelObj.directions);
 }
 
-// function directions() {
-//   console.log(levelObj.directions);
-// }
-
-// function hint() {
-//   console.log(levelObj.hint);
-// }
+function hint() {
+  return level.getProfileData()
+  .then(data => {
+    let levelObj = require('../levels/'+data.currentLevel+'.js');
+    console.log(levelObj.hint);
+  })
+  //Should make a function for getting Current LevelData
+  //replace + with template strings
+}
 
 module.exports = {
   check,
-  //hint,
+  hint,
   start,
   runLevel
 }

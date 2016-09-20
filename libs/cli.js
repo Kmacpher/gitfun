@@ -8,9 +8,9 @@ function check() {
    
 }
 
-// function hint() {
-//   game.hint()
-// }
+function hint() {
+  game.hint()
+}
 
 function resetUpdateProfileHelper(levelNo) {
   levelNo = parseInt(levelNo, 10);
@@ -56,7 +56,7 @@ function main() {
 
 module.exports = {
   check,
-  //hint,
+  hint,
   reset,
   main
 }

@@ -6,9 +6,11 @@ function reset() {
   return del(['./*', '!./gitfun_profile.json', './.git/**'])
   .then(getProfileData)
   .then(data => {
-    return require('../levels/'+data.currentLevel+'.js').setup()
+    let levelObj = require('../levels/'+data.currentLevel+'.js')
+    return levelObj.setup()
     .then(() => {
       data.setup = true;
+      console.log(levelObj.directions)
       return writeProfileData(data);
     })
   })

@@ -54,17 +54,18 @@ function runLevel() {
     if(!data.setup) {
       return level.reset(levelObj.currentLevel)
       .then(() => console.log(levelObj.directions));
-    } else check(levelObj);
-  });
+    } else check(levelObj); //Should runLevel even run check? should I make students check manually?
+  })
 }
 
 function check(levelObj) {
+  console.log('Checking your solution...');
   return levelObj.checkSolution()
   .then(result => result ? correct(levelObj) : incorrect(levelObj));
 }
 
 function correct(levelObj) {
-  console.log("\n   Wooo! You completed this git challenge! Run `Gitfun` to proceed to the next level.\n");
+  console.log("\nWooo! You completed this git challenge! Run `Gitfun` to proceed to the next level.\n");
   return level.getProfileData()
   .then((data) => {
     data.lastLevelCompleted = levelObj.levelNo;
@@ -75,21 +76,21 @@ function correct(levelObj) {
 }
 
 function incorrect(levelObj) {
-  console.log("\n   Sorry, that's not the correct solution. See a hint using 'node gitfun hint', and reset the level with 'node gitfun reset'\n");
+  console.log("\nSorry, that's not the correct solution. See a hint using 'node gitfun hint', and reset the level with 'node gitfun reset'\n");
   console.log(levelObj.directions);
 }
 
-function directions() {
-  console.log(levelObj.directions);
-}
+// function directions() {
+//   console.log(levelObj.directions);
+// }
 
-function hint() {
-  console.log(levelObj.hint);
-}
+// function hint() {
+//   console.log(levelObj.hint);
+// }
 
 module.exports = {
   check,
-  hint,
+  //hint,
   start,
   runLevel
 }

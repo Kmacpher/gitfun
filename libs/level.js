@@ -2,19 +2,21 @@ const fs = require("mz/fs");
 const Git = require('nodegit');
 const del = require('del');
 
-function reset(levelNo) {
+function reset() {
   return del(['./*', '!./gitfun_profile.json', './.git/**'])
   .then(getProfileData)
   .then(data => {
-    if(levelNo) data.currentLevel = levelNo;
-    data.setup = false;
-    return data;
+    return require('../levels/'+data.currentLevel+'.js').setup()
+    .then(() => {
+      data.setup = true;
+      return writeProfileData(data);
+    })
   })
-  .then(writeProfileData)
   .catch(console.error)
 }
 
 function getProfileData() {
+  //returns promise for data object from .gitfun_profile
   return fs.readFile('./.gitfun_profile.json', 'utf8')
   .then(data => JSON.parse(data))
 }
@@ -24,6 +26,7 @@ function writeProfileData(dataObj) {
 }
 
 function profile() {
+  //returns promise for sig object for making commits
   return fs.readFile('./.gitfun_profile.json', 'utf8')
   .then(data => JSON.parse(data))
   .then(data => {

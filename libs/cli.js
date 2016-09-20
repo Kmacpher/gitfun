@@ -13,14 +13,13 @@ function hint() {
 }
 
 function reset(levelNo) {
-//level needs to be a number
   level.getProfileData()
   .then((data) => {
     data.currentLevel = levelNo;
     return level.writeProfileData(data);
   })
-  .then(() => level.reset(parseInt(levelNo, 10)))
-  .then(game.runLevel)
+  .then(() => level.reset())
+  .catch(console.error);
 }
 
 function main() {

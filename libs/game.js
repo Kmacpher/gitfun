@@ -10,7 +10,7 @@ const level = require('./level.js');
 function start() {
   promptStart();
 
-  promptGet([{
+  return promptGet([{
     name: 'consent',
     description: 'Do you want to create a new Gitfun projet? (Y/n)'
   }]).then(results => {
@@ -53,16 +53,13 @@ function runLevel() {
     let levelObj = require('../levels/'+data.currentLevel+'.js');
     if(!data.setup) {
       return level.reset(levelObj.currentLevel)
-      .then(() => {
-        data.setup = true;
-        return level.writeProfileData(data);
-      }).then(() => console.log(levelObj.directions));
+      .then(() => console.log(levelObj.directions));
     } else check(levelObj);
   });
 }
 
 function check(levelObj) {
-  levelObj.checkSolution()
+  return levelObj.checkSolution()
   .then(result => result ? correct(levelObj) : incorrect(levelObj));
 }
 

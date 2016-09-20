@@ -16,38 +16,38 @@ const directions = `Oops!
 const hint = `Check out the 'git reflog' command\n`;
 
 function setup() {
-    console.log('setting up')
-    return level.profile()
-    .then(sig => {
-        return fs.open('./file1', 'w')
-        .then(() => fs.open('./file2', 'w'))
-        .then(() => fs.open('./file3', 'w'))
-        .then(() => level.repoInit())
-        .then(repo => {
-            return repo.createCommitOnHead(['file1'], sig.author, sig.committer, 'file1')
-            .then(() => repo.createCommitOnHead(['file2'], sig.author, sig.committer, 'file2'))
-            .then((file2_OID) => {
-                return repo.createCommitOnHead(['file3'], sig.author, sig.committer, 'file3')
-                .then(() => repo.getCommit(file2_OID))
-                .then((OID) => Git.Reset.reset(repo, OID, Git.Reset.TYPE.HARD))
-            })
-        })
-    }).then(() => {
-        console.log('The challenge has been set up!')
+  console.log('setting up')
+  return level.profile()
+  .then(sig => {
+    return fs.open('./file1', 'w')
+    .then(() => fs.open('./file2', 'w'))
+    .then(() => fs.open('./file3', 'w'))
+    .then(() => level.repoInit())
+    .then(repo => {
+      return repo.createCommitOnHead(['file1'], sig.author, sig.committer, 'file1')
+      .then(() => repo.createCommitOnHead(['file2'], sig.author, sig.committer, 'file2'))
+      .then((file2_OID) => {
+        return repo.createCommitOnHead(['file3'], sig.author, sig.committer, 'file3')
+        .then(() => repo.getCommit(file2_OID))
+        .then((OID) => Git.Reset.reset(repo, OID, Git.Reset.TYPE.HARD))
+      })
     })
-    .catch(console.error);
+  }).then(() => {
+    console.log('The challenge has been set up!')
+  })
+  .catch(console.error);
 }
 
 function checkSolution() {
-    //return true or false
-    //also should check that you are on master?
-    return fs.exists('./file3')
+  //return true or false
+  //also should check that you are on master?
+  return fs.exists('./file3')
 }
 
 module.exports = {
-    levelNo, //num
-    directions, //str
-    hint, //str
-    setup, //fn
-    checkSolution  //fn
+  levelNo, //num
+  directions, //str
+  hint, //str
+  setup, //fn 
+  checkSolution  //fn
 }

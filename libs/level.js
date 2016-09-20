@@ -24,14 +24,14 @@ function writeProfileData(dataObj) {
 }
 
 function profile() {
-    return fs.readFile('./.gitfun_profile.json', 'utf8')
-    .then(data => JSON.parse(data))
-    .then(data => {
-        return {
-            author: Git.Signature.now(data.name, data.email),
-            committer: Git.Signature.now(data.name, data.email)
-        }
-    })
+  return fs.readFile('./.gitfun_profile.json', 'utf8')
+  .then(data => JSON.parse(data))
+  .then(data => {
+    return {
+      author: Git.Signature.now(data.name, data.email),
+      committer: Git.Signature.now(data.name, data.email)
+    }
+  })
 }
 
 function repoInit() {

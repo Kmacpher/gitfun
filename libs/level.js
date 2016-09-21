@@ -1,20 +1,32 @@
 const fs = require("mz/fs");
 const Git = require('nodegit');
 const del = require('del');
+const levelList = require('./levelList');
 
 function reset() {
   return del(['./*', '!./gitfun_profile.json', './.git/**'])
   .then(getProfileData)
   .then(data => {
-    let levelObj = require('../levels/'+data.currentLevel+'.js')
-    return levelObj.setup()
-    .then(() => {
-      data.setup = true;
-      console.log(levelObj.directions)
-      return writeProfileData(data);
+    return getLevelObj()
+    .then(levelObj => {
+      return levelObj.setup()
+      .then(() => {
+        if(data.setup) console.log(levelObj.directions)
+        else data.setup = true;
+        return writeProfileData(data);
+      })
     })
   })
   .catch(console.error)
+}
+
+function getLevelObj() {
+  return getProfileData()
+  .then(data => {
+    let levelName = levelList[data.phase][data.currentLevel-1]; 
+    return require(`../levels/${levelName}.js`);
+  })
+  .catch(console.error);
 }
 
 function getProfileData() {
@@ -41,7 +53,7 @@ function profile() {
 
 function repoInit() {
   //returns promise for repo
-  return fs.writeFile('./.gitignore', '.gitfun_profile.json')
+  return fs.writeFile('./.gitignore', '.gitfun_profile.json\n.gitignore')
   .then(() => Git.Repository.init('./', 0))
 }
 
@@ -50,5 +62,6 @@ module.exports = {
   profile,
   getProfileData,
   writeProfileData,
-  reset
+  reset,
+  getLevelObj
 }

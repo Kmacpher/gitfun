@@ -5,7 +5,6 @@ const level = require('./level.js');
 
 function check() {
   game.check();
-   
 }
 
 function hint() {
@@ -14,7 +13,6 @@ function hint() {
 
 function resetUpdateProfileHelper(levelNo) {
   levelNo = parseInt(levelNo, 10);
-  console.log('in helper', levelNo)
 
   return level.getProfileData()
   .then(data => {
@@ -31,7 +29,7 @@ function resetUpdateProfileHelper(levelNo) {
 }
 
 function reset(levelNo) {
-  return (levelNo
+  return (levelNo.length
     ? resetUpdateProfileHelper(levelNo)
     : Promise.resolve())
   .then(() => level.reset())

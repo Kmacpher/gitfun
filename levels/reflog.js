@@ -16,7 +16,6 @@ const directions = `Oops!
 const hint = `Check out the 'git reflog' command\n`;
 
 function setup() {
-  console.log('setting up')
   return level.profile()
   .then(sig => {
     return fs.open('./file1', 'w')
@@ -39,8 +38,8 @@ function setup() {
 }
 
 function checkSolution() {
-  //return true or false
-  //also should check that you are on master?
+  //TODO also should check that you are on master? (didn't just checkout)
+  //TODO should have unique content so they can't cheat with touch
   return fs.exists('./file3')
 }
 

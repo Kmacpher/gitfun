@@ -1,6 +1,7 @@
 {
   "name": null,
   "email": null,
+  "phase": 0,
   "lastLevelCompleted": 0,
   "currentLevel": 1,
   "setup": false

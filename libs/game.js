@@ -4,6 +4,7 @@ const promisify = require('promisify-node');
 const promptStart = require('prompt').start;
 const promptGet = promisify(require('prompt').get);
 const path = require('path');
+const levelList = require('./levelList');
 
 const level = require('./level.js');
 
@@ -50,11 +51,14 @@ function makeProfile() {
 function runLevel() {
   return level.getProfileData()
   .then(data => {
-    let levelObj = require('../levels/'+data.currentLevel+'.js');
-    if(!data.setup) {
-      return level.reset(levelObj.currentLevel)
-      .then(() => console.log(levelObj.directions));
-    } else check(levelObj); //Should runLevel even run check? should I make students check manually?
+    //TODO: should this be starting at 0 or 1? I have 0 being the way that a student 
+    return level.getLevelObj()
+    .then(levelObj => {
+      if(!data.setup) {
+        return level.reset(levelObj.currentLevel)
+        .then(() => console.log(levelObj.directions));
+      } else check(levelObj); //Should runLevel even run check? should I make students check manually?
+    })
   })
 }
 
@@ -81,13 +85,8 @@ function incorrect(levelObj) {
 }
 
 function hint() {
-  return level.getProfileData()
-  .then(data => {
-    let levelObj = require('../levels/'+data.currentLevel+'.js');
-    console.log(levelObj.hint);
-  })
-  //Should make a function for getting Current LevelData
-  //replace + with template strings
+  return level.getLevelObj()
+  .then(levelObj => console.log(levelObj.hint));  
 }
 
 module.exports = {
@@ -96,4 +95,7 @@ module.exports = {
   start,
   runLevel
 }
+
+//TODO put all the text in a module, can randomize it, add more direction
+//TODO replace + with template strings
 

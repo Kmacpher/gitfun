@@ -11,10 +11,10 @@ function reset() {
     .then(levelObj => {
       return levelObj.setup()
       .then(() => {
-        if(data.setup) console.log(levelObj.directions)
-        else data.setup = true;
+        data.setup = true;
         return writeProfileData(data);
       })
+      .then(() => console.log(levelObj.directions));
     })
   })
   .catch(console.error)

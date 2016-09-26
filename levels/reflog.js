@@ -16,6 +16,7 @@ const directions = `Oops!
 const hint = `Check out the 'git reflog' command\n`;
 
 function setup() {
+ //should be able to clean up with spread?
   return level.profile()
   .then(sig => {
     return fs.open('./file1', 'w')

@@ -5,10 +5,12 @@ const promptStart = require('prompt').start;
 const promptGet = promisify(require('prompt').get);
 const path = require('path');
 const levelList = require('./levelList');
+const format = require('./format');
 
 const level = require('./level.js');
 
 function start() {
+  console.log(format.welcome)
   promptStart();
 
   return promptGet([{
@@ -43,7 +45,7 @@ function makeProfile() {
       })
     })
     .then(() => {
-         console.log('Your Gitfun project has been created in this directory. Change directory into your gitfun_workshop and run `gitfun`')
+         console.log('Your Gitfun project has been created in this directory. \nChange directory into your gitfun_workshop and run `gitfun`')
     })
     .catch(console.error);
 }
@@ -51,14 +53,18 @@ function makeProfile() {
 function runLevel() {
   return level.getProfileData()
   .then(data => {
-    //TODO: should this be starting at 0 or 1? I have 0 being the way that a student 
-    return level.getLevelObj()
-    .then(levelObj => {
-      if(!data.setup) {
-        return level.reset(levelObj.currentLevel)
-        .then(() => console.log(levelObj.directions));
-      } else check(levelObj); //Should runLevel even run check? should I make students check manually?
-    })
+    if(levelList[data.phase].length < data.currentLevel) {
+      console.log('There are no more levels to play! Use \'gitfun reset 1\' to return to the beginning of the game.');
+      return Promise.resolve();
+    }
+    else {
+      return level.getLevelObj()
+      .then(levelObj => {
+        if(!data.setup) {
+          return level.reset(levelObj.currentLevel)
+        } else check(levelObj); //TODO Should runLevel even run check? should I make students check manually?
+      })
+    }
   })
 }
 
@@ -80,7 +86,7 @@ function correct(levelObj) {
 }
 
 function incorrect(levelObj) {
-  console.log("\nSorry, that's not the correct solution. See a hint using 'node gitfun hint', and reset the level with 'node gitfun reset'\n");
+  console.log("\nSorry, that's not the correct solution. See a hint using 'node gitfun hint', \nand reset the level with 'node gitfun reset'\n");
   console.log(levelObj.directions);
 }
 

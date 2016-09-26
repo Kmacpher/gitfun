@@ -4,7 +4,11 @@ const level = require('../libs/level.js');
 
 const levelNo = 1;
 
-const directions = `You need to make a new git repository for a project. Make a new repository then run gitfun again to check`;
+const directions = `
+Let's start a new project! First, you need to make a new git repository for
+the project. Initialize a new git repository, and then run 'gitfun' again
+to check your solution.
+`;
 
 const hint = `Check out the 'git init' command\n`;
 

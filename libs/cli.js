@@ -2,6 +2,7 @@
 const fs = require("mz/fs");
 const game = require('./game.js');
 const level = require('./level.js');
+const levelList = require('./levelList');
 
 function check() {
   game.check();
@@ -19,7 +20,8 @@ function resetUpdateProfileHelper(levelNo) {
     if(levelNo > data.lastLevelCompleted + 1) {
       throw "You haven't completed that level yet. You need to complete the previous levels first! Run `gitfun reset 0` to move to the last uncompleted level."
     } else if(levelNo === 0) {
-      levelNo = data.lastLevelCompleted + 1;
+      levelNo = levelList[data.phase].length < data.currentLevel
+        ? data.lastLevelCompleted : data.lastLevelCompleted + 1;
     }
     data.currentLevel = levelNo;
     return data;
@@ -28,10 +30,21 @@ function resetUpdateProfileHelper(levelNo) {
   .catch(console.error);
 }
 
+function lastLevelHelper() {
+  return level.getProfileData()
+  .then(data => {
+    if(data.currentLevel > levelList[data.phase].length) {
+      data.currentLevel = data.currentLevel - 1;
+    }
+    return data;
+  })
+  .then(level.writeProfileData);
+}
+
 function reset(levelNo) {
   return (levelNo.length
     ? resetUpdateProfileHelper(levelNo)
-    : Promise.resolve())
+    : lastLevelHelper())
   .then(() => level.reset())
   .catch(console.error);
 }

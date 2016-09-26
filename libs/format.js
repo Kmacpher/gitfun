@@ -17,6 +17,11 @@ will give you a hint on how to complete the current level.
 Okay, let's begin!
 `;
 
+//TODO move some of the other text in here, make headers such as 
+// ****************
+// *  Directions  *
+// ****************
+
 module.exports = {
   welcome
 }

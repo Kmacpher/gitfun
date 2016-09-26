@@ -33,7 +33,7 @@ function resetUpdateProfileHelper(levelNo) {
 function lastLevelHelper() {
   return level.getProfileData()
   .then(data => {
-    if(data.currentLevel > levelList[data.phase].length) {
+    if(data.currentLevel > levelList[data.phase].length || !data.setup) {
       data.currentLevel = data.currentLevel - 1;
     }
     return data;

@@ -4,6 +4,10 @@ const game = require('./game.js');
 const level = require('./level.js');
 const levelList = require('./levelList');
 
+function directions() {
+  game.directions();
+}
+
 function check() {
   game.check();
 }
@@ -66,6 +70,7 @@ function main() {
 }
 
 module.exports = {
+  directions,
   check,
   hint,
   reset,

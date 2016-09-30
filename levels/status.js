@@ -4,15 +4,16 @@ const level = require('../libs/level.js');
 const promisify = require('promisify-node');
 const promptStart = require('prompt').start;
 const promptGet = promisify(require('prompt').get);
+const chalk = require('chalk');
 
 const levelNo = 4;
 
 const directions = `
 Woo! You've made your first commit! As you continue to save snapshots of your project using 'git commit',
-it will be important to be able to see the status of your working directory and your staging area. The 
-command 'git status' will show you all the changes that have been stages, changes that haven't, and files 
-that aren't being tracked by git. In this challenge, use git status to see how many files are not being
-tracked. To check your work, run 'gitfun' or 'gitfun check'.
+it will be important to be able to see the status of your working directory and your staging area. The
+command 'git status' will show you all the changes that have been stages, changes that haven't, and files
+that aren't being tracked by git. In this challenge, ${chalk.yellow(`use git status to see how many files are not being
+tracked`)}. To check your work, run 'gitfun' or 'gitfun check'.
 `;
 
 const hint = `
@@ -25,7 +26,7 @@ function setup() {
   .then(() => fs.writeFile('file3.js', 'console.log("hi");'))
   .then(() => fs.writeFile('file4.js', 'console.log("hi");'))
   .then(() => console.log('The challenge has been set up!')); //this line needs to go elsewhere so its not repeated
-  
+
 }
 
 function checkSolution() {

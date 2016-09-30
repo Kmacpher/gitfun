@@ -75,7 +75,7 @@ function check(levelObj) {
 }
 
 function correct(levelObj) {
-  console.log("\nWooo! You completed this git challenge! Run `Gitfun` to proceed to the next level.\n");
+  console.log("\nWooo! You completed this git challenge! Run `gitfun` to proceed to the next level.\n");
   return level.getProfileData()
   .then((data) => {
     data.lastLevelCompleted = levelObj.levelNo;
@@ -86,16 +86,22 @@ function correct(levelObj) {
 }
 
 function incorrect(levelObj) {
-  console.log("\nSorry, that's not the correct solution. See a hint using 'node gitfun hint', \nand reset the level with 'node gitfun reset'\n");
+  console.log("\nSorry, that's not the correct solution. See a hint using 'gitfun hint', \nand reset the level with 'gitfun reset'\n");
   console.log(levelObj.directions);
+}
+
+function directions() {
+  level.getLevelObj()
+  .then(levelObj => console.log(levelObj.directions));
 }
 
 function hint() {
   return level.getLevelObj()
-  .then(levelObj => console.log(levelObj.hint));  
+  .then(levelObj => console.log(levelObj.hint));
 }
 
 module.exports = {
+  directions,
   check,
   hint,
   start,

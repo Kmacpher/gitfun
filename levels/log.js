@@ -4,19 +4,20 @@ const level = require('../libs/level.js');
 const promisify = require('promisify-node');
 const promptStart = require('prompt').start;
 const promptGet = promisify(require('prompt').get);
+const chalk = require('chalk');
 
 const levelNo = 5;
 
 const directions = `
 'git status' is a great tool, but it doesn't tell us anything about changes we have already commited.
-To see a history of all our commits, we must use the command 'git log'. log tells us when the commit 
-was made, the commit message, the commit's unique ID, and information about the author. 
-This challenge sets up a history of commits that you can access with 'git log' Report the commit message
-of the commit that was authored by Karen Mac.  To check your work, run 'gitfun' or 'gitfun check'.
+To see a history of all our commits, we must use the command 'git log'. log tells us when the commit
+was made, the commit message, the commit's unique ID, and information about the author.
+This challenge sets up a history of commits that you can access with 'git log' ${chalk.yellow(`Report the commit message
+of the commit that was authored by Karen Mac`)}. To check your work, run 'gitfun' or 'gitfun check'.
 `;
 
 const hint = `
-When you run 'git log', you will see a list of commits and related information! Included in the 
+When you run 'git log', you will see a list of commits and related information! Included in the
 information is the author of that change. Report the message of the commit authored by Karen Mac.
 `;
 
@@ -43,7 +44,7 @@ function setup() {
   })
   .then(() => console.log('The challenge has been set up!')) //this line needs to go elsewhere so its not repeated
   .catch(console.error);
-  
+
 }
 
 function checkSolution() {

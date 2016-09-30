@@ -6,6 +6,7 @@ const promptGet = promisify(require('prompt').get);
 const path = require('path');
 const levelList = require('./levelList');
 const format = require('./format');
+const chalk = require('chalk');
 
 const level = require('./level.js');
 
@@ -75,7 +76,7 @@ function check(levelObj) {
 }
 
 function correct(levelObj) {
-  console.log("\nWooo! You completed this git challenge! Run `Gitfun` to proceed to the next level.\n");
+  console.log(chalk.green("\nWooo! You completed this git challenge! ") + "Run `Gitfun` to proceed to the next level.\n");
   return level.getProfileData()
   .then((data) => {
     data.lastLevelCompleted = levelObj.levelNo;
@@ -86,13 +87,13 @@ function correct(levelObj) {
 }
 
 function incorrect(levelObj) {
-  console.log("\nSorry, that's not the correct solution. See a hint using 'node gitfun hint', \nand reset the level with 'node gitfun reset'\n");
+  console.log(chalk.red("\nSorry, that's not the correct solution. ") + "See a hint using 'node gitfun hint', \nand reset the level with 'node gitfun reset'\n");
   console.log(levelObj.directions);
 }
 
 function hint() {
   return level.getLevelObj()
-  .then(levelObj => console.log(levelObj.hint));  
+  .then(levelObj => console.log(levelObj.hint));
 }
 
 module.exports = {

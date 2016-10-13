@@ -1,13 +1,12 @@
 const fs = require('mz/fs');
 const Git = require('nodegit');
-const shell = require('shelljs');
 const level = require('../libs/level.js');
 const chalk = require('chalk');
 
 const levelNo = 8;
 
 const directions = `
-We've learned how to view our remote repositories, and we've learned how to add our own. Right now you have a repository with a couple of files with a remote repository called 'dummy-remote'. The remote repository has changes which we want to bring into our current local repo. To complete this challenge, ${chalk.yellow(`use the 'pull' command in Git to pull the contents of the master branch of the remote repository 'dummy-remote' into your local repository.`)} To check your work, run 'gitfun'or 'gitfun check'.
+We've learned how to view our remote repositories, and we've learned how to add our own. Right now you have an empty repository with a remote repository called 'dummy-remote'. The remote repository has changes which we want to bring into our current local repo. To complete this challenge, ${chalk.yellow(`use the 'pull' command in Git to pull the contents of the master branch of the remote repository 'dummy-remote' into your local repository.`)} To check your work, run 'gitfun'or 'gitfun check'.
 
 `;
 

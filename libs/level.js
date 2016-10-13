@@ -4,13 +4,16 @@ const del = require('del');
 const levelList = require('./levelList');
 
 function reset() {
-  return del(['./*', '!./gitfun_profile.json', './.git/**'])
+  return del(['./*', '!./gitfun_profile.json', './.git/**', '../tempGitfunDir'], {force: true})
   .then(getProfileData)
   .then(data => {
-    return getLevelObj()
+    data.setup = false; //necessary in case setup fails
+    return writeProfileData(data)
+    .then(getLevelObj)
     .then(levelObj => {
       return levelObj.setup()
       .then(() => {
+        console.log('The challenge has been setup!')
         data.setup = true;
         return writeProfileData(data);
       })

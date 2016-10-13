@@ -23,7 +23,6 @@ flag with the commit command to add the message from the command line.`;
 function setup() {
   return level.repoInit()
   .then(() => fs.writeFile('addThisFile.js', 'console.log("hi");'))
-  .then(() => console.log('The challenge has been set up!')); //this line needs to go elsewhere so its not repeated
 
 }
 

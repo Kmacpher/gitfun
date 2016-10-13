@@ -25,7 +25,6 @@ function setup() {
   .then(() => fs.writeFile('file2.js', 'console.log("hi");'))
   .then(() => fs.writeFile('file3.js', 'console.log("hi");'))
   .then(() => fs.writeFile('file4.js', 'console.log("hi");'))
-  .then(() => console.log('The challenge has been set up!')); //this line needs to go elsewhere so its not repeated
 
 }
 

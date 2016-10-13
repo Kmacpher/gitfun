@@ -11,11 +11,19 @@ const promptGet = promisify(require('prompt').get);
 const levelNo = 9;
 
 const directions = `
-Being able to pull content from a remote repository is extremely important. But you'll also want to be able to 'push' your code to the remote repository as well. Right now you have a repository with a file called 'file1' with a remote repository called 'temp-remote'. Our local repository has the most up to date file, and we want our remote repository to be caught up to the same point.  To complete this challenge, ${chalk.yellow(`use the 'push' command in Git to push the contents of the local repository to the master branch of the remote repository 'temp-remote'.`)} To check your work, run 'gitfun'or 'gitfun check'.
+Being able to pull content from a remote repository is extremely important. But you'll also want to be able to 'push' 
+your code to the remote repository as well. Right now you have a repository with a file called 'file1' with a remote 
+repository called 'temp-remote'. Our local repository has the most up to date file, and we want our remote repository 
+to be caught up to the same point.  To complete this challenge, ${chalk.yellow(`use the 'push' command in Git to push 
+the contents of the local repository to the master branch of the remote repository 'temp-remote'.`)} To check your 
+work, run 'gitfun'or 'gitfun check'.
 
 `;
 
-const hint = `Like 'git pull', 'git push' takes two arguments. The first is the remote that you wish to push to. The second is the branch of the remote you wish to push to. For example, a the most common way this command is used is 'git push origin master', since 'origin' is the default remote name.  
+const hint = `
+Like 'git pull', 'git push' takes two arguments. The first is the remote that you wish to push to. The second is the 
+branch of the remote you wish to push to. For example, a the most common way this command is used is 'git push origin 
+master', since 'origin' is the default remote name.  
 `
 
 function setupHelper(repo) {

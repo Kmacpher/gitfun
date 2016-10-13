@@ -42,8 +42,6 @@ function setup() {
       .then(() => repo.createCommitOnHead(['file4.js'], sig.author, sig.committer, 'added file4'))
     })
   })
-  .then(() => console.log('The challenge has been set up!')) //this line needs to go elsewhere so its not repeated
-  .catch(console.error);
 
 }
 

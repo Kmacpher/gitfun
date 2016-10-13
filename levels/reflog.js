@@ -33,8 +33,6 @@ function setup() {
         .then((OID) => Git.Reset.reset(repo, OID, Git.Reset.TYPE.HARD))
       })
     })
-  }).then(() => {
-    console.log('The challenge has been set up!')
   })
   .catch(console.error);
 }

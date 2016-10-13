@@ -24,7 +24,6 @@ Go check out the docs online! Many command line tools such as git have a -v flag
 function setup() {
   return level.repoInit()
   .then(repo => Git.Remote.create(repo, 'my-remote', 'https://github.com/Kmacpher/dummy-remote'))
-  .then(() => console.log('The challenge has been set up!')); //this line needs to go elsewhere so its not repeated
 
 }
 

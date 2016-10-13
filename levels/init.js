@@ -15,7 +15,6 @@ const hint = `Check out the 'git init' command\n`;
 
 function setup() {
   return fs.writeFile('./.gitignore', '.gitfun_profile.json')
-  .then(() => console.log('The challenge has been setup!'));
 }
 
 function checkSolution() {

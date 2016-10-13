@@ -19,7 +19,6 @@ Go check out the docs online! The \`git remote add\` command is a good place to 
 
 function setup() {
   return level.repoInit()
-  .then(() => console.log('The challenge has been set up!')); //this line needs to go elsewhere so its not repeated
 
 }
 

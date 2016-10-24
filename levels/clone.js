@@ -3,7 +3,7 @@ const Git = require('nodegit');
 const level = require('../libs/level.js');
 const chalk = require('chalk');
 
-const levelNo = 1;
+const levelNo = 10;
 
 const directions = `
 Great job so far! Let's go back and learn a bit more in depth about each command. The first challenge you 

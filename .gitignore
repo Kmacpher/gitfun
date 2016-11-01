@@ -1,1 +1,5 @@
 node_modules/
+.git/
+scenarioIdeas.md
+npm-debug.log
+.vscode/

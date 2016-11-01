@@ -6,8 +6,6 @@ const promptStart = require('prompt').start;
 const promptGet = promisify(require('prompt').get);
 const chalk = require('chalk');
 
-const levelNo = 5;
-
 const directions = `
 'git status' is a great tool, but it doesn't tell us anything about changes we have already commited.
 To see a history of all our commits, we must use the command 'git log'. log tells us when the commit
@@ -57,7 +55,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo, //num
   directions, //str
   hint, //str
   setup, //fn

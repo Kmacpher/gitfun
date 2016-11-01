@@ -3,8 +3,6 @@ const Git = require('nodegit');
 const level = require('../libs/level.js');
 const chalk = require('chalk');
 
-const levelNo = 12;
-
 const directions = `
 Remember when you used 'git add' to add a single file to the staging area? What would you
 do if you needed to add many different files, and they were all in different directories?
@@ -45,7 +43,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo, //num
   directions, //str
   hint, //str
   setup, //fn

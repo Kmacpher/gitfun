@@ -6,8 +6,6 @@ const promptStart = require('prompt').start;
 const promptGet = promisify(require('prompt').get);
 const chalk = require('chalk');
 
-const levelNo = 4;
-
 const directions = `
 Woo! You've made your first commit! As you continue to save snapshots of your project using 'git commit',
 it will be important to be able to see the status of your working directory and your staging area. The
@@ -40,7 +38,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo, //num
   directions, //str
   hint, //str
   setup, //fn

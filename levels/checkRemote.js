@@ -6,8 +6,6 @@ const promptStart = require('prompt').start;
 const promptGet = promisify(require('prompt').get);
 const chalk = require('chalk');
 
-const levelNo = 6;
-
 const directions = `
 If you want others to be able to collaborate with you on your project, you need to learn
 how to manage remote repositories. A remote repoistory is a version of your project that
@@ -39,7 +37,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo, //num
   directions, //str
   hint, //str
   setup, //fn

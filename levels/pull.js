@@ -3,8 +3,6 @@ const Git = require('nodegit');
 const level = require('../libs/level.js');
 const chalk = require('chalk');
 
-const levelNo = 8;
-
 const directions = `
 We've learned how to view our remote repositories, and we've learned how to add our own. Right now you have an empty 
 repository with a remote repository called 'dummy-remote'. The remote repository has changes which we want to bring 
@@ -41,7 +39,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo,
   directions,
   hint,
   setup,

@@ -8,8 +8,6 @@ const promisify = require('promisify-node');
 const promptStart = require('prompt').start;
 const promptGet = promisify(require('prompt').get);
 
-const levelNo = 9;
-
 const directions = `
 Being able to pull content from a remote repository is extremely important. But you'll also 
 want to be able to 'push' your code to the remote repository as well. Right now you have a 
@@ -79,7 +77,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo,
   directions,
   hint,
   setup,

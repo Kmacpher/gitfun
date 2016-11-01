@@ -3,8 +3,6 @@ const Git = require('nodegit');
 const level = require('../libs/level.js');
 const chalk = require('chalk');
 
-const levelNo = 13;
-
 const directions = `
 In the last level, you learned how to add entire directories by giving the relative 
 or direct path to that directory. For example, I often use 'git add .' to add all
@@ -48,7 +46,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo, //num
   directions, //str
   hint, //str
   setup, //fn

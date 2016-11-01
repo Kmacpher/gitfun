@@ -5,8 +5,6 @@ const level = require('../libs/level.js');
 const chalk = require('chalk');
 const Promise = require('bluebird');
 
-const levelNo = 14;
-
 const directions = `
 In this challenge, we've made a commit for you. But to our frustration, we've made a 
 typo! How embarrasing... We really want our commits to be informative and professional. 
@@ -41,7 +39,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo,
   directions,
   hint,
   setup,

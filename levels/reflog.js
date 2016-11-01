@@ -3,16 +3,14 @@ const Git = require('nodegit');
 const level = require('../libs/level.js');
 const chalk = require('chalk');
 
-const levelNo = 2;
-
 const directions = `Oops!
 
-    You decided to delete your latest commit by running \`git reset --hard HEAD^\`.
-    But then your partner tells you that the commit was super duper important and that you need it back.
+You decided to delete your latest commit by running \`git reset --hard HEAD^\`.
+But then your partner tells you that the commit was super duper important and that you need it back.
 
-    Womp Womp.
+Womp Womp.
 
-    ${chalk.yellow('Restore the deleted commit using git')}. When you are done, run 'gitfun check' to check your work.`;
+${chalk.yellow('Restore the deleted commit using git')}. When you are done, run 'gitfun check' to check your work.`;
 
 const hint = `Check out the 'git reflog' command\n`;
 
@@ -44,7 +42,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo, //num
   directions, //str
   hint, //str
   setup, //fn

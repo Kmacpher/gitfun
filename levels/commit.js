@@ -3,8 +3,6 @@ const Git = require('nodegit');
 const level = require('../libs/level.js');
 const chalk = require('chalk');
 
-const levelNo = 3;
-
 const directions = `
 Now that you know how to add a file to the staging area, let's learn how to commit
 the file. A commit in Git is like a current snapshot of the file at that time. Once
@@ -41,7 +39,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo, //num
   directions, //str
   hint, //str
   setup, //fn

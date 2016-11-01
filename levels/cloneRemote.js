@@ -6,8 +6,6 @@ const promisify = require('promisify-node');
 const promptStart = require('prompt').start;
 const promptGet = promisify(require('prompt').get);
 
-const levelNo = 11;
-
 const directions = `
 When you clone a directory, that remote directory is set at the 'remote' repository for 
 your new local repository. ${chalk.yellow(`Use 'git clone' to clone this Github 
@@ -34,7 +32,6 @@ function checkSolution() { //Need to be able to run 'gitfun from inside the clon
 }
 
 module.exports = {
-  levelNo, //num
   directions, //str
   hint, //str
   setup, //fn

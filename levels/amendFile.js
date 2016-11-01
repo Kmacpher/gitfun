@@ -5,8 +5,6 @@ const level = require('../libs/level.js');
 const chalk = require('chalk');
 const Promise = require('bluebird');
 
-const levelNo = 15;
-
 const directions = `
 Well, we're just making mistakes all over the place! Thankfully, we're not alone, and it's easily fixed!
 In this level, we've made a commit, and then just realized we missed a small change. We'd really like 
@@ -42,7 +40,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo,
   directions,
   hint,
   setup,

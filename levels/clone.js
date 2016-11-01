@@ -3,8 +3,6 @@ const Git = require('nodegit');
 const level = require('../libs/level.js');
 const chalk = require('chalk');
 
-const levelNo = 10;
-
 const directions = `
 Great job so far! Let's go back and learn a bit more in depth about each command. The first challenge you 
 completed was learning how to run 'git init'. Often though, you'll be starting with code that someone else 
@@ -35,7 +33,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo, //num
   directions, //str
   hint, //str
   setup, //fn

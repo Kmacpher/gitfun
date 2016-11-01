@@ -3,8 +3,6 @@ const Git = require('nodegit');
 const level = require('../libs/level.js');
 const chalk = require('chalk');
 
-const levelNo = 7;
-
 const directions = `
 Now that you know how to check if you have any remote repositories, you need to learn how to
 add them yourself. You can have multiple remote repositories, but we will start with just making
@@ -30,7 +28,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo, //num
   directions, //str
   hint, //str
   setup, //fn

@@ -3,8 +3,6 @@ const Git = require('nodegit');
 const level = require('../libs/level.js');
 const chalk = require('chalk');
 
-const levelNo = 1;
-
 const directions = `
 Let's start a new project! First, you need to make a new git repository for
 the project. ${chalk.yellow('Initialize a new git repository')}, and then run 'gitfun' again
@@ -22,7 +20,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo, //num
   directions, //str
   hint, //str
   setup, //fn

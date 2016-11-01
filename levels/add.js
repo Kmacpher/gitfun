@@ -3,8 +3,6 @@ const Git = require('nodegit');
 const level = require('../libs/level.js');
 const chalk = require('chalk');
 
-const levelNo = 2;
-
 const directions = `
 Now that you'd made your first Git repository, you should write some content!
 We've done so for you: There is a new file with some code inside. ${chalk.yellow(`Use the 'git add <file>'
@@ -35,7 +33,6 @@ function checkSolution() {
 }
 
 module.exports = {
-  levelNo, //num
   directions, //str
   hint, //str
   setup, //fn

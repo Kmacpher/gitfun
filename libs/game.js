@@ -82,8 +82,10 @@ function correct(levelObj) {
   console.log(chalk.green("\nWooo! You completed this git challenge! ") + "Run `gitfun` to proceed to the next level.\n");
   return level.getProfileData()
   .then((data) => {
-    data.lastLevelCompleted = levelObj.levelNo;
-    data.currentLevel = levelObj.levelNo + 1;
+    //let levelName = levelList[data.phase][data.currentLevel-1];
+    let levelNo = data.currentLevel;
+    if(levelNo > data.lastLevelCompleted) data.lastLevelCompleted = levelNo;
+    data.currentLevel += 1;
     data.setup = false;
     return level.writeProfileData(data)
   }).catch(console.log)

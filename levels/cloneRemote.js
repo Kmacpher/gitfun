@@ -9,8 +9,8 @@ const promptGet = promisify(require('prompt').get);
 const directions = `
 When you clone a directory, that remote directory is set at the 'remote' repository for 
 your new local repository. ${chalk.yellow(`Use 'git clone' to clone this Github 
-repository: https://github.com/Kmacpher/dummy-remote`)}. What is the name of the remote
-repository? Run gitfun again to check your work.
+repository: https://github.com/Kmacpher/dummy-remote. What is the name of the remote
+repository?`)} Run gitfun again to check your work.
 `;
 
 const hint = `Remember the 'git remote' command? Use it to find the name of the remote

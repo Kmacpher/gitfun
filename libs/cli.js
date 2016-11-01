@@ -3,6 +3,7 @@ const fs = require("mz/fs");
 const game = require('./game.js');
 const level = require('./level.js');
 const levelList = require('./levelList');
+const path = require('path');
 
 function directions() {
   game.directions();
@@ -14,6 +15,24 @@ function check() {
 
 function hint() {
   game.hint()
+}
+
+function list() {
+  return fs.readFile('.gitfun_profile.json', 'utf8')
+  .then(JSON.parse)
+  .then(data => {
+    let sliceTo = data.lastLevelCompleted;
+    let list = levelList[0].slice(0, sliceTo)
+    
+    console.log('\nLevels completed:')
+    let num = 1;
+    for(const elem of list) {
+      console.log(`${num++}: ${elem}`);
+    }
+    console.log(`\ncurrent level is ${data.currentLevel}: ${levelList[0][data.currentLevel]} \n`)
+    
+  })
+  .catch(console.error);
 }
 
 function resetUpdateProfileHelper(levelNo) {
@@ -61,7 +80,13 @@ function main() {
       return fs.exists('./gitfun_workshop')
       .then(exists => {
         if(exists) return console.log('Please move into the gitfun_workshop directory and run `gitfun` again');
-        else return game.start();
+        else {
+          return fs.exists('../.gitfun_profile.json')
+          .then(exists => {
+            if(exists) return console.log('Please move into the parent gitfun_workshop directory and run `gitfun` again');
+            else return game.start();
+          })
+        }
       })
     }
   })
@@ -74,5 +99,6 @@ module.exports = {
   check,
   hint,
   reset,
-  main
+  main,
+  list
 }

@@ -4,14 +4,15 @@ const level = require('../libs/level.js');
 const chalk = require('chalk');
 
 const directions = `
-Great job so far! Let's go back and learn a bit more in depth about each command. The first challenge you 
-completed was learning how to run 'git init'. Often though, you'll be starting with code that someone else 
-has already written! Software development is all about collaboration! Research the 'git clone' command, and
-how to use it to make a copy of a remote repository on your local machine. Usually, we are cloning a repo from
-Github. Cloning does a few things: 
+Great job so far! The first challenge you completed was learning how to run 'git init'. Often 
+though, you'll be starting with code that someone else has already written! Software development 
+is all about collaboration! Research the 'git clone' command, and how to use it to make a copy of 
+a remote repository on your local machine rather than starting from scratch. Usually, we are 
+cloning a repo from Github. Cloning does a few things: 
       -A git repository is set up
       -All the code from the repository link is copied to your local machine
       -The local repository gets a remote that points to the repo it was cloned from
+      -The local repository is set up to "track" the remote repository. We'll talk more about this later!
 
 Once you have a good understanding, ${chalk.yellow(`use 'git clone' to clone this Github 
 repository: https://github.com/Kmacpher/dummy-remote`)}, and then run 'gitfun' again

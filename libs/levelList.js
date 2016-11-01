@@ -1,5 +1,5 @@
 
-let phase0 = ['init', 'add', 'commit', 'status', 'log', 'checkRemote', 'addRemote', 'pull', 'push', 'clone', 'cloneRemote', 'addMany', 'addMatch', 'amendCommitMessage', 'amendFile'];
+let phase0 = ['init', 'add', 'commit', 'status', 'log', 'addMany', 'addMatch', 'checkRemote', 'addRemote', 'pull', 'push', 'clone', 'cloneRemote', 'amendCommitMessage', 'amendFile'];
 let phase1 = ['reflog'];
 let phase2 = [];
 

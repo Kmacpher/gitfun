@@ -50,23 +50,9 @@ function setupHelper(repo) {
   
 }
 
-//I think we should ask for this consent at the beginning
-//also, I think 
 function setup() {
-  promptStart();
-  return promptGet([{
-    name: 'consent',
-    description: 'This challenge requires an additional directory. Can Gitfun create a temporary repository in this location\'s parent directory? (Y/n)'
-  }]).then(result => {
-    if (/^[y|Y](es)?$/.test(result.consent)) return true;
-    else return false;
-  }).then(answer => {
-    if(answer) {
-      return level.repoInit()
-      .then(setupHelper)
-    }
-    else throw "The level could not be set up";
-  })
+    return level.repoInit()
+    .then(setupHelper)
 }
 
 function checkSolution() {

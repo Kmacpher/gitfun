@@ -17,8 +17,11 @@ function start() {
   return promptGet([{
     name: 'consent',
     description: 'Do you want to create a new Gitfun projet? (Y/n)'
-  }]).then(results => {
-    if (/^[y|Y](es)?$/.test(results.consent)) {
+    },{
+      name: 'allow',
+      description: 'Do you allow Gitfun to create temporary folders in this directory when needed? (Y/n)'
+    }]).then(results => {
+    if (/^[y|Y](es)?$/.test(results.consent) && /^[y|Y](es)?$/.test(results.allow)) {
       return makeProfile()
     } else {
       console.log('Gitfun project was not created');

@@ -17,7 +17,7 @@ repository with a file called 'file1' with a remote repository called 'temp-remo
 local repository has the most up to date file, and we want our remote repository to be 
 caught up to the same point.  To complete this challenge, ${chalk.yellow(`use the 'push' 
 command in Git to push the contents of the local repository to the master branch of the 
-remote repository 'temp-remote'.`)} To check your work, run 'gitfun'or 'gitfun check'.
+remote repository 'temp-remote'.`)} To check your work, run 'gitfun' or 'gitfun check'.
 
 `;
 
@@ -25,7 +25,7 @@ const hint = `
 Like 'git pull', 'git push' takes two arguments. The first is the remote that you wish 
 to push to. The second is the branch of the remote you wish to push to. For example, a 
 the most common way this command is used is 'git push origin master', since 'origin' 
-is the default remote name. 
+is the default remote name. But our default isn't named 'origin'!
 `
 
 function setupHelper(repo) {
@@ -43,8 +43,8 @@ function setupHelper(repo) {
   })
   .then(() => {
     shell.cd('../gitfun_workshop')
-    shell.exec('git push --set-upstream temp-remote master', {silent: true});
-    //now user doens't have to use -u or set-upstream, that will be in a later lesson
+    shell.exec('git push temp-remote master', {silent: false});
+    // -u or set-upstream will be in a later lesson
   })
   .then(() => fs.writeFile('file2.js', 'console.log("howdy");'))
   .then(() => level.profile())
@@ -52,6 +52,8 @@ function setupHelper(repo) {
   
 }
 
+//I think we should ask for this consent at the beginning
+//also, I think 
 function setup() {
   promptStart();
   return promptGet([{
@@ -70,8 +72,6 @@ function setup() {
 }
 
 function checkSolution() {
-  //check for file1, file2, file3
-  console.log(process.cwd())
   return Git.Repository.open('../tempGitfunDir')
     .then(repo => repo.getHeadCommit())
     .then(commit => commit.messageRaw())

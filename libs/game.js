@@ -72,10 +72,14 @@ function runLevel() {
   })
 }
 
-function check(levelObj) {
+function check() {
   console.log('Checking your solution...');
-  return levelObj.checkSolution()
-  .then(result => result ? correct(levelObj) : incorrect(levelObj));
+  return level.getLevelObj()
+  .then(levelObj => {
+    return levelObj.checkSolution()
+    .then(result => result ? correct(levelObj) : incorrect(levelObj))
+  })
+  .catch(console.error)
 }
 
 function correct(levelObj) {

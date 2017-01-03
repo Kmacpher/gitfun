@@ -8,7 +8,7 @@ GitFun is an interactive git workshop following the style of [githug](https://gi
 npm install -g gitfun
 ```
 
-*NOTE: if you get an error `cannot find OpenSSL or Libgcrypt`, run `xcode-select --install` and then try `npm install -g gitfun` again.*
+**NOTE: if you get an error `cannot find OpenSSL or Libgcrypt`, run `xcode-select --install` and then try `npm install -g gitfun` again.**
 
 ### Running
 
